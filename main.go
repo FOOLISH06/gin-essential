@@ -13,7 +13,7 @@ func main() {
 
 	router := gin.Default()
 	_ = router.SetTrustedProxies([]string{"localhost"})
-	collectRouter(router)
+	router = collectRouter(router)
 
 	if err := router.Run(); err != nil {
 		log.Fatalln(err.Error())
