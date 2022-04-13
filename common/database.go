@@ -3,6 +3,7 @@ package common
 import (
 	"fmt"
 	"github.com/foolish06/gin-essential/model"
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
@@ -18,12 +19,12 @@ func GetDB() *gorm.DB {
 }
 
 func initDB() *gorm.DB {
-	username := "root"
-	password := "123456"
-	host	 := "localhost"
-	port 	 := "3306"
-	database := "tmp"
-	charset	 := "utf8"
+	username := viper.GetString("datasource.username")
+	password := viper.GetString("datasource.password")
+	host	 := viper.GetString("datasource.host")
+	port 	 := viper.GetString("datasource.port")
+	database := viper.GetString("datasource.database")
+	charset	 := viper.GetString("datasource.charset")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=true",
 		username,
